@@ -57,7 +57,7 @@ $conn->close();
             <input type="time" name="task_time" required>
             <textarea name="task_description" placeholder="Task Description" rows="3"></textarea>
             <button class="add-task" type="submit">Add Task</button>
-            <a href="home.php" class="add-task">Done</a>
+            <a href="viewTask.php" class="add-task">Done</a>
 
 
         </form>
