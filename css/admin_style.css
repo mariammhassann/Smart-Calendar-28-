@@ -70,78 +70,125 @@ section{
    font-size: 2rem;
 }
 
-.message{
+/* Message Notification */
+.message {
    position: sticky;
-   top:0;
-   margin:0 auto;
+   top: 0;
+   margin: 0 auto;
    max-width: 1200px;
-   background-color: var(--light-bg);
-   padding:2rem;
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); /* Subtle gradient for a modern touch */
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+   padding: 1.5rem 2rem; /* Adjusted padding for balance */
    display: flex;
    align-items: center;
    justify-content: space-between;
+   border-radius: 8px; /* Rounded corners for a clean look */
    z-index: 10000;
-   gap:1.5rem;
+   gap: 1rem;
+   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animations */
 }
 
-.message span{
-   font-size: 2rem;
-   color:var(--black);
+.message:hover {
+   transform: translateY(-3px); /* Slight lift on hover */
+   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
 }
 
-.message i{
+/* Message Text */
+.message span {
+   font-size: 1.8rem; /* Slightly smaller font for a refined look */
+   color: #444; /* Neutral text color */
+   font-weight: 500;
+}
+
+/* Close Icon */
+.message i {
    cursor: pointer;
-   color:var(--red);
-   font-size: 2.5rem;
+   color: #ff4d4d; /* Bright red for visibility */
+   font-size: 2.2rem;
+   transition: transform 0.3s ease, color 0.3s ease; /* Smooth animations */
 }
 
-.message i:hover{
-   transform: rotate(90deg);
+.message i:hover {
+   transform: rotate(90deg) scale(1.1); /* Rotate and enlarge on hover */
+   color: #d63333; /* Darker red on hover */
 }
 
+/* Button Styles */
 .btn,
 .option-btn,
 .delete-btn,
-.white-btn{
+.white-btn {
    display: inline-block;
    margin-top: 1rem;
-   padding:1rem 3rem;
+   padding: 1rem 3rem;
    cursor: pointer;
-   color:var(--white);
-   font-size: 1.8rem;
-   border-radius: .5rem;
+   font-size: 1.6rem; /* Refined font size */
+   border-radius: 10px; /* Larger rounded corners */
    text-transform: capitalize;
+   font-weight: 600; /* Bold text for emphasis */
+   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+}
+
+/* Button Colors */
+.btn,
+.white-btn {
+   background-color: #6c63ff; /* Modern purple */
+   color: #fff;
 }
 
 .btn:hover,
 .option-btn:hover,
-.delete-btn:hover{
-   background-color: var(--black);
+.delete-btn:hover {
+   transform: translateY(-2px); /* Slight lift on hover */
+   background-color: #444; /* Unified hover color */
 }
 
-.white-btn,
-.btn{
-   background-color: var(--purple);
+/* Individual Button Variants */
+.option-btn {
+   background-color: #ff9f43; /* Bright orange */
+   color: #fff;
 }
 
-.option-btn{
-   background-color: var(--orange);
+.delete-btn {
+   background-color: #ff4d4d; /* Bright red for delete */
+   color: #fff;
 }
 
-.delete-btn{
-   background-color: var(--red);
+.white-btn {
+   background-color: #f4f4f4; /* Subtle white */
+   color: #444; /* Neutral text color */
+   border: 1px solid #ddd; /* Subtle border for contrast */
 }
 
-.white-btn:hover{
-   background-color: var(--white);
-   color:var(--black);
+.white-btn:hover {
+   background-color: #fff; /* Bright white on hover */
+   color: #6c63ff; /* Match with theme purple */
+   border-color: #6c63ff;
 }
 
+/* Fade In Animation */
 @keyframes fadeIn {
-   0%{
-      transform: translateY(1rem);
-      opacity: .2s;
+   0% {
+       transform: translateY(1rem);
+       opacity: 0;
    }
+   100% {
+       transform: translateY(0);
+       opacity: 1;
+   }
+}
+
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    0% {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .header{
@@ -203,8 +250,8 @@ section{
    padding:2rem;
    text-align: center;
    border-radius: .5rem;
-   border:var(--border);
-   background-color: #dbd9e4;
+   border:#6e150b;
+   background-color: #cac2c2;
    display: none;
    animation:alternate .4s linear;
 }
@@ -215,26 +262,32 @@ section{
 
 .header .flex .account-box p{
    font-size: 2rem;
-   color:var(--light-color);
+   color:var(--black);
    margin-bottom: 1.5rem;
 }
 
 .header .flex .account-box p span{
-   color:var(--purple);
+   color:#7f1105;
 }
 
 .header .flex .account-box .delete-btn{
    margin-top: 0;
+   background-color: #81180c;
+}
+.header .flex .account-box .delete-btn:hover{
+   margin-top: 0;
+   background-color: #f2f2f2;
+   color: #333;
 }
 
 .header .flex .account-box div{
    margin-top: 1.5rem;
    font-size: 2rem;
-   color:var(--light-color);
+   color:var(--red);
 }
 
 .header .flex .account-box div a{
-   color:var(--orange);
+   color:var(--red);
 }
 
 .header .flex .account-box div a:hover{
@@ -245,259 +298,444 @@ section{
    display: none;
 }
 
-.dashboard .box-container{
+/* General Dashboard Layout */
+.dashboard .box-container {
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-   gap:1.5rem;
-   max-width: 1200px;
-   margin:0 auto;
-   align-items: flex-start;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+   gap: 2rem; 
+   max-width: 1400px;
+   margin: 2rem auto; 
+   align-items: stretch; 
 }
 
-.dashboard .box-container .box{
-   border-radius: .5rem;
-   padding:2rem;
-   background-color: var(--white);
-   box-shadow: var(--box-shadow);
-   border:var(--border);
+/* Individual Box Styling */
+.dashboard .box-container .box {
+   border-radius: 12px; 
+   padding: 2.5rem;
+   background: linear-gradient(135deg, #ffffff, #f8f9fc); 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border: none; 
    text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dashboard .box-container .box h3{
-   font-size: 5rem;
-   color:var(--black); 
+/* Box Hover Effect */
+.dashboard .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
 }
 
-.dashboard .box-container .box p{
-   margin-top: 1.5rem;
-   padding:1.5rem;
-   background-color: var(--light-bg);
-   color:var(--purple);
-   font-size: 2rem;
-   border-radius: .5rem;
-   border:var(--border);
+/* Headings inside Boxes */
+.dashboard .box-container .box h3 {
+   font-size: 4.5rem; 
+   color: #333; 
+   margin-bottom: 1.2rem; 
+   font-weight: bold;
 }
 
-.add-products form{
-   background-color: var(--white);
-   border-radius: .5rem;
-   padding:2rem;
-   text-align: center;
-   box-shadow: var(--box-shadow);
-   border:var(--border);
-   max-width: 50rem;
-   margin:0 auto;
-}
-
-.add-products form h3{
-   font-size: 2.5rem;
-   text-transform: uppercase;
-   color:var(--black);
-   margin-bottom: 1.5rem;
-}
-
-.add-products form .box{
-   width: 100%;
-   background-color: var(--light-bg);
-   border-radius: .5rem;
-   margin:1rem 0;
-   padding:1.2rem 1.4rem;
-   color:var(--black);
+/* Description/Text inside Boxes */
+.dashboard .box-container .box p {
+   margin: 0;
+   padding: 1.5rem;
+   background: #f1f3f8; 
+   color: #6a0dad; 
    font-size: 1.8rem;
-   border:var(--border);
+   font-weight: 500;
+   border-radius: 8px; 
+   border: none; 
+   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.show-products .box-container{
-   display: grid;
-   grid-template-columns: repeat(auto-fit, 30rem);
-   justify-content: center;
-   gap:1.5rem;
-   max-width: 1200px;
-   margin:0 auto;
-   align-items: flex-start;
+/* Text Hover Effect */
+.dashboard .box-container .box p:hover {
+   background: #6a0dad; 
+   color: #ffffff;
 }
 
-.show-products{
-   padding-top: 0;
+/* Responsive Design */
+@media (max-width: 768px) {
+   .dashboard .box-container {
+       grid-template-columns: 1fr;
+       gap: 1.5rem;
+       padding: 1rem;
+   }
 }
 
-.show-products .box-container .box{
+@media (max-width: 500px) {
+   .dashboard .box-container .box {
+       padding: 2rem; 
+   }
+
+   .dashboard .box-container .box h3 {
+       font-size: 3.8rem; 
+   }
+
+   .dashboard .box-container .box p {
+       font-size: 1.6rem; 
+   }
+}
+
+
+/* Add Products Form */
+.add-products form {
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+   border-radius: 12px; 
+   padding: 3rem;
    text-align: center;
-   padding:0rem;
-   border-radius: .5rem;
-   border:var(--border);
-   box-shadow: var(--box-shadow);
-   background-color: var(--white);
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border: none; 
+   max-width: 500px;
+   margin: 2rem auto; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.show-products .box-container .box img{
-   height: 30rem;
+.add-products form:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.show-products .box-container .box .name{
-   padding:1rem 0;
+.add-products form h3 {
+   font-size: 2.8rem; 
+   text-transform: uppercase;
+   color: #333; 
+   margin-bottom: 2rem;
+   font-weight: bold;
+}
+
+.add-products form .box {
+   width: 100%;
+   background-color: #f1f3f8; 
+   border-radius: 8px;
+   margin: 1.2rem 0;
+   padding: 1.5rem;
+   color: #444; 
+   font-size: 1.8rem;
+   border: none; 
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-products form .box:focus {
+   background-color: #ffffff; 
+   box-shadow: 0 0 8px rgba(108, 99, 255, 0.5); 
+   outline: none;
+}
+
+/* Show Products */
+.show-products .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+   gap: 2rem; 
+   max-width: 1400px; 
+   margin: 3rem auto;
+   align-items: stretch; 
+}
+
+.show-products .box-container .box {
+   text-align: center;
+   padding: 1rem; 
+   border-radius: 12px;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+   background: linear-gradient(135deg, #ffffff, #f8f9fc); 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.show-products .box-container .box:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.show-products .box-container .box img {
+   height: 280px;
+   object-fit: cover; 
+   border-radius: 12px 12px 0 0;
+}
+
+.show-products .box-container .box .name {
+   padding: 1rem 0;
    font-size: 2rem;
-   color:var(--black);
+   color: #333;
+   font-weight: bold; 
 }
 
-.show-products .box-container .box .price{
-   padding:1rem 0;
-   font-size: 2.5rem;
-   color:var(--red);
+.show-products .box-container .box .price {
+   padding: 1rem 0;
+   font-size: 2.2rem;
+   color: #e63946; 
+   font-weight: bold;
 }
 
-.edit-product-form{
+/* Edit Product Form */
+.edit-product-form {
    min-height: 100vh;
-   background-color: rgba(0,0,0,.7);
+   background: rgba(0, 0, 0, 0.75); 
    display: flex;
    align-items: center;
    justify-content: center;
-   padding:2rem;
-   overflow-y: scroll;
+   padding: 2rem;
+   overflow-y: auto; 
    position: fixed;
-   top:0; left:0; 
+   top: 0;
+   left: 0;
    z-index: 1200;
    width: 100%;
 }
 
-.edit-product-form form{
-   width: 50rem;
-   padding:2rem;
+.edit-product-form form {
+   width: 500px;
+   padding: 3rem;
    text-align: center;
-   border-radius: .5rem;
-   background-color: var(--white);
+   border-radius: 12px;
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
 }
 
-.edit-product-form form img{
-   height: 27rem;
-   margin-bottom: 1rem;
+.edit-product-form form img {
+   height: 250px;
+   margin-bottom: 1.5rem;
+   border-radius: 8px;
 }
 
-.edit-product-form form .box{
-   margin:1rem 0;
-   padding:1.2rem 1.4rem;
-   border:var(--border);
-   border-radius: .5rem;
-   background-color: var(--light-bg);
+.edit-product-form form .box {
+   margin: 1.2rem 0;
+   padding: 1.5rem;
+   border: none;
+   border-radius: 8px;
+   background-color: #f1f3f8;
    font-size: 1.8rem;
-   color:var(--black);
+   color: #333;
    width: 100%;
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.orders .box-container{
-   display: flex;
+.edit-product-form form .box:focus {
+   background-color: #ffffff;
+   box-shadow: 0 0 8px rgba(108, 99, 255, 0.5);
+   outline: none;
+}
 
-   grid-template-columns: repeat(auto-fit, 30rem);
+/* Responsive Design */
+@media (max-width: 768px) {
+   .add-products form,
+   .edit-product-form form {
+       width: 90%; 
+   }
+
+   .show-products .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+   }
+
+   .show-products .box-container .box img {
+       height: 200px; 
+   }
+}
+
+/* Orders Section */
+.orders .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
    justify-content: center;
-   gap:1.5rem;
-   max-width: 1200px;
-   margin:0 auto;
-   align-items: flex-start;
+   gap: 2rem; /* More spacing for clarity */
+   max-width: 1000px; /* Wider container */
+   margin: 3rem auto;
+   align-items: stretch; /* Ensure boxes are aligned properly */
 }
 
-.orders .box-container .box{
-   background-color: var(--white);
-   padding:2rem;
-   border:var(--border);
-   box-shadow: var(--box-shadow);
-   border-radius: 1.5rem;
+.orders .box-container .box {
+   background: linear-gradient(135deg, #ffffff, #f9f9f9);
+   padding: 2.5rem;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border-radius: 12px;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.orders .box-container .box p{
-   padding-bottom: 1rem;
-   font-size: 2rem;
-   color:var(--light-color);
+.orders .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-.orders .box-container .box p span{
-   color:var(--purple);
+.orders .box-container .box p {
+   padding-bottom: 1.5rem;
+   font-size: 1.8rem; 
+   color: #555; 
+   line-height: 1.6;
 }
 
-.orders .box-container .box form{
+.orders .box-container .box p span {
+   color: #2f0d5c; 
+   font-weight: bold;
+}
+
+.orders .box-container .box form {
    text-align: center;
 }
 
-.orders .box-container .box form select{
-   border-radius: .5rem;
-   margin:.5rem 0;
-   width: 90%;
-   background-color: var(--light-bg);
-   border:var(--border);
-   padding:1.2rem 1.4rem;
-   font-size: 1.8rem;
-   color:var(--black);
+.orders .box-container .box form select {
+   border-radius: 8px; /* Softer corners */
+   margin: 1rem 0;
+   width: 100%; 
+   background-color: #f1f3f8; 
+   border: none; 
+   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); 
+   padding: 1.2rem 1.4rem;
+   font-size: 1.6rem;
+   color: #333; /* Neutral text color */
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.users .box-container{
-   display: flex;
-   grid-template-columns: repeat(auto-fit, 30rem);
+.orders .box-container .box form select:focus {
+   background-color: #ffffff; 
+   box-shadow: 0 0 8px rgba(108, 99, 255, 0.5); 
+   outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .orders .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+   }
+}
+
+/* Users Section */
+.users .box-container {
+   display: grid; 
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
    justify-content: center;
-   gap:1.5rem;
-   max-width: 1500px;
-   margin:0 auto;
-   align-items: flex-start;
+   gap: 2rem; 
+   max-width: 1400px; 
+   margin: 3rem auto; 
+   align-items: stretch; 
 }
 
-.users .box-container .box{
-   background-color: var(--white);
-   padding:2rem;
-   border:var(--border);
-   box-shadow: var(--box-shadow);
-   border-radius: .5rem;
+/* User Box */
+.users .box-container .box {
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+   padding: 2.5rem;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border-radius: 12px; 
    text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
-.users .box-container .box p{
+.users .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); 
+}
+
+/* User Information */
+.users .box-container .box p {
    padding-bottom: 1.5rem;
-   font-size: 2rem;
-   color:var(--light-color);
+   font-size: 1.8rem; 
+   color: #555; 
+   line-height: 1.6;
 }
 
-.users .box-container .box p span{
-   color:var(--purple);
+.users .box-container .box p span {
+   color: #31045c; 
+   font-weight: bold;
 }
 
-.users .box-container .box .delete-btn{
-   margin-top: 0;
+/* Delete Button */
+.users .box-container .box .delete-btn {
+   margin-top: 1.5rem; 
+   background-color: var(--red); 
+   color: #fff;
+   border: none;
+   border-radius: 8px; /* Rounded button */
+   padding: 1rem 2rem;
+   font-size: 1.6rem;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
 }
 
-.messages .box-container{
-   display: flex;
-   grid-template-columns: repeat(auto-fit, 35rem);
+.users .box-container .box .delete-btn:hover {
+   background-color: #d63333; /* Darker red on hover */
+   transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .users .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+   }
+}
+
+
+/* Messages Section */
+.messages .box-container {
+   display: grid; 
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
    justify-content: center;
-   gap:1.5rem;
+   gap: 2rem; /* Increased spacing for cleaner separation */
    max-width: 1200px;
-   margin:0 auto;
-   align-items: flex-start;
+   margin: 3rem auto; 
+   align-items: stretch;
 }
 
-.messages .box-container .box{
-   background-color: var(--white);
-   padding:2rem;
-   border:var(--border);
-   box-shadow: var(--box-shadow);
-   border-radius: .5rem;
+/* Message Box */
+.messages .box-container .box {
+   background: linear-gradient(135deg, #ffffff, #f8f9fa);
+   padding: 2.5rem;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+   border-radius: 12px; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animations */
+   position: relative; 
 }
 
-.messages .box-container .box p{
+.messages .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); 
+}
+
+/* Message Content */
+.messages .box-container .box p {
    padding-bottom: 1.5rem;
-   font-size: 2rem;
-   color:var(--light-color);
-   line-height: 1.5;
+   font-size: 1.8rem; 
+   color: #666; 
+   line-height: 1.6;
 }
 
-.messages .box-container .box p span{
-   color:var(--purple);
+.messages .box-container .box p span {
+   color: #35095b; 
+   font-weight: bold;
 }
 
-.messages .box-container .box .delete-btn{
-   margin-top: 0;
-margin-left: 100px;}
+/* Delete Button */
+.messages .box-container .box .delete-btn {
+   margin-top: 1.5rem; 
+   background-color: var(--red); 
+   color: #fff;
+   border: none;
+   border-radius: 8px; 
+   padding: 1rem 2rem;
+   font-size: 1.6rem;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.3s ease; 
+   position: absolute; 
+   bottom: 2rem;
+   right: 2rem;
+}
 
-
-
-
-
+.messages .box-container .box .delete-btn:hover {
+   background-color: #d63333; 
+   transform: scale(1.05); 
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+   .messages .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+   }
+   .messages .box-container .box {
+       padding: 2rem; 
+   }
+   .messages .box-container .box .delete-btn {
+       bottom: 1.5rem; 
+       right: 1.5rem;
+   }
+}
 
 
 
