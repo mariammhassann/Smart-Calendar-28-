@@ -58,6 +58,7 @@ mysqli_close($conn);
 <!-- HTML Form for Editing Task -->
 <form method="POST">
 <link rel="stylesheet" href="css/editTask.css">
+<h2>Edit Task</h2>
 
     <label for="task_title">Task Title:</label>
     <input type="text" name="task_title" value="<?php echo htmlspecialchars($task['task_title']); ?>" required><br>
