@@ -1,0 +1,173 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+include 'config.php';
+
+session_start();
+
+$admin_id = $_SESSION['admin_id'];
+
+if (!isset($admin_id)) {
+    header('location:login.php');
+    exit;
+}
+
+if (isset($_POST['add_product'])) {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $price = $_POST['price'];
+    $image = $_FILES['image']['name'];
+    $image_tmp_name = $_FILES['image']['tmp_name'];
+    $image_folder = 'uploaded_img/' . $image;
+
+    $add_product_query = mysqli_query($conn, "INSERT INTO `products` (name, price, image) VALUES ('$name', '$price', '$image')");
+
+    if ($add_product_query) {
+        $product_id = mysqli_insert_id($conn); // Get the last inserted product ID
+
+        // Insert attributes and values into the EAV model
+        if (!empty($_POST['attribute']) && !empty($_POST['value'])) {
+            foreach ($_POST['attribute'] as $key => $attribute) {
+                $value = $_POST['value'][$key];
+                if (!empty($attribute) && !empty($value)) {
+                    // Check if the attribute exists
+                    $attribute_query = mysqli_query($conn, "SELECT id FROM `attributes` WHERE name='$attribute'");
+                    if (mysqli_num_rows($attribute_query) == 0) {
+                        mysqli_query($conn, "INSERT INTO `attributes` (name) VALUES ('$attribute')");
+                        $attribute_id = mysqli_insert_id($conn);
+                    } else {
+                        $attribute_data = mysqli_fetch_assoc($attribute_query);
+                        $attribute_id = $attribute_data['id'];
+                    }
+                    // Insert the value
+                    mysqli_query($conn, "INSERT INTO `values` (product_id, attribute_id, value) VALUES ('$product_id', '$attribute_id', '$value')");
+                }
+            }
+        }
+
+        move_uploaded_file($image_tmp_name, $image_folder);
+        $message[] = 'Product added successfully with attributes!';
+    } else {
+        $message[] = 'Product could not be added!';
+    }
+}
+
+if (isset($_GET['delete'])) {
+    $delete_id = $_GET['delete'];
+    $delete_image_query = mysqli_query($conn, "SELECT image FROM `products` WHERE id = '$delete_id'");
+    if ($delete_image_query) {
+        $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
+        if (!empty($fetch_delete_image['image'])) {
+            unlink('uploaded_img/' . $fetch_delete_image['image']);
+        }
+    }
+    mysqli_query($conn, "DELETE FROM `products` WHERE id = '$delete_id'");
+    mysqli_query($conn, "DELETE FROM `values` WHERE product_id = '$delete_id'"); // Cleanup attributes
+    header('location:admin_products.php');
+    exit;
+}
+
+if (isset($_POST['update_product'])) {
+    $update_p_id = $_POST['update_p_id'];
+    $update_name = $_POST['update_name'];
+    $update_price = $_POST['update_price'];
+
+    mysqli_query($conn, "UPDATE `products` SET name = '$update_name', price = '$update_price' WHERE id = '$update_p_id'");
+
+    $update_image = $_FILES['update_image']['name'];
+    $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+    $update_image_size = $_FILES['update_image']['size'];
+    $update_folder = 'uploaded_img/' . $update_image;
+    $update_old_image = $_POST['update_old_image'];
+
+    if (!empty($update_image)) {
+        if ($update_image_size > 2000000) {
+            $message[] = 'Image file size is too large';
+        } else {
+            mysqli_query($conn, "UPDATE `products` SET image = '$update_image' WHERE id = '$update_p_id'");
+            move_uploaded_file($update_image_tmp_name, $update_folder);
+            if (!empty($update_old_image)) {
+                unlink('uploaded_img/' . $update_old_image);
+            }
+        }
+    }
+
+    header('location:admin_products.php');
+    exit;
+}
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin_style.css">
+</head>
+<body>
+<?php include 'admin_header.php'; ?>
+
+<section class="add-products">
+    <h1 class="title">Shop Products</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        <h3>Add Product</h3>
+        <input type="text" name="name" class="box" placeholder="Enter product name" required>
+        <input type="number" min="0" name="price" class="box" placeholder="Enter product price" required>
+        <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
+        <div class="attribute-section">
+            <div class="attribute-box">
+                <input type="text" name="attribute[]" class="box" placeholder="Enter attribute name">
+                <input type="text" name="value[]" class="box" placeholder="Enter attribute value">
+            </div>
+        </div>
+        <input type="submit" value="Add Product" name="add_product" class="btn">
+    </form>
+</section>
+
+<section class="show-products">
+    <div class="box-container">
+        <?php
+        $select_products = mysqli_query($conn, "SELECT * FROM `products`");
+        if (mysqli_num_rows($select_products) > 0) {
+            while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+                $product_id = $fetch_products['id'];
+                ?>
+                <div class="box">
+                    <img src="uploaded_img/<?php echo htmlspecialchars($fetch_products['image']); ?>" alt="">
+                    <div class="name"><?php echo htmlspecialchars($fetch_products['name']); ?></div>
+                    <div class="price">£<?php echo htmlspecialchars($fetch_products['price']); ?>/-</div>
+                    <div class="attributes">
+                        <?php
+                        $attributes_query = mysqli_query($conn, "SELECT a.name as attribute_name, v.value as attribute_value 
+                            FROM `values` v 
+                            JOIN `attributes` a ON v.attribute_id = a.id 
+                            WHERE v.product_id = '$product_id'");
+                        if (mysqli_num_rows($attributes_query) > 0) {
+                            while ($attribute_data = mysqli_fetch_assoc($attributes_query)) {
+                                echo "<p>" . htmlspecialchars($attribute_data['attribute_name']) . ": " . htmlspecialchars($attribute_data['attribute_value']) . "</p>";
+                            }
+                        } else {
+                            echo "<p>  </p>";
+                        }
+                        ?>
+                    </div>
+                    <a href="admin_products.php?update=<?php echo $product_id; ?>" class="option-btn">Update</a>
+                    <a href="admin_products.php?delete=<?php echo $product_id; ?>" class="delete-btn" onclick="return confirm('Delete this product?');">Delete</a>
+                </div>
+                <?php
+            }
+        } else {
+            echo '<p class="empty">No products added yet!</p>';
+        }
+        ?>
+    </div>
+</section>
+
+<script src="js/admin_script.js"></script>
+</body>
+</html>
