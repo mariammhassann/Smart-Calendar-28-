@@ -74,7 +74,7 @@ mysqli_close($conn); // Close the connection
     
     <br>
     <a href="createTask.php" class="new-task">Add New Task</a>
-    <a href="calender.php" class="back-to-calendar">Back to Calendar</a>
+    <a href="home.php" class="back-to-calendar">Done</a>
 </div>
 
 </body>
