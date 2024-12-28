@@ -75,32 +75,9 @@ if(!isset($user_id)){
          <h3>Mariam Ashraf</h3>
       </div>
 
-      <div class="box">
-         <img src="images/user3.jpg" alt="">
-         <p>Love the sleek design and reminders! It’s perfect for staying on top of my busy schedule.</p>
-         <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
+      
 
-         </div>
-         <h3>Ghadeer</h3>
-      </div>
-
-      <div class="box">
-         <img src="images/user4.jpg" alt="">
-         <p>Calendok is incredibly user-friendly. I’ve never been so organized with my appointments and deadlines!</p>
-         <div class="stars">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star-half-alt"></i>
-            <i class="fas fa-star-half-alt"></i>
-         </div>
-         <h3>Reham Adel</h3>
-      </div>
+     
 
       <div class="box">
          <img src="images/user5.jpg" alt="">
