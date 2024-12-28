@@ -90,7 +90,7 @@ if(isset($_GET['delete_all'])){
    </div>
 
    <div class="cart-total">
-      <p>Total : <span>£<?php echo $grand_total; ?>/-</span></p>
+      <p>Total : <span><?php echo $grand_total; ?> LE</span></p>
       <div class="flex">
          <a href="shop.php" class="option-btn">Continue shopping</a>
          <a href="checkout.php" class="btn <?php echo ($grand_total > 1)?'':'disabled'; ?>">Proceed to checkout</a>
@@ -106,7 +106,6 @@ if(isset($_GET['delete_all'])){
 
 
 
-<?php include 'footer.php'; ?>
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
