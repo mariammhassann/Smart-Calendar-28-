@@ -1,7 +1,7 @@
-/* General styling */
+/* General Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f6fb;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8a95c7 0%, #764ba23a 50%);
     margin: 0;
     display: flex;
     justify-content: center;
@@ -9,73 +9,89 @@ body {
     height: 100vh;
 }
 
+/* Container Card */
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px;
     box-sizing: border-box;
+    transition: transform 0.3s ease;
 }
 
+.container:hover {
+    transform: translateY(-5px);
+}
+
+/* Heading */
 h2 {
     text-align: center;
-    color: #333;
-    font-size: 24px;
+    color: #4b0082;
+    font-size: 26px;
     margin-bottom: 20px;
 }
 
-/* Form styling */
+/* Form */
 form {
     display: flex;
     flex-direction: column;
 }
 
+/* Labels */
 label {
-    font-size: 16px;
+    font-size: 15px;
     color: #333;
-    margin-bottom: 5px;
-    margin-top: 10px;
+    margin-bottom: 6px;
 }
 
-input, textarea {
-    padding: 12px;
+/* Input Fields */
+input,
+textarea {
+    padding: 15px 20px;
     font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-input:focus, textarea:focus {
-    border-color: #4CAF50;
+/* Focus Effects */
+input:focus,
+textarea:focus {
+    border-color: #7e42ac;
+    box-shadow: 0 0 5px rgba(126, 66, 172, 0.5);
     outline: none;
 }
 
+/* Textarea */
 textarea {
-    resize: vertical;
+    resize: horizontal;
     min-height: 100px;
 }
 
-/* Button styling */
+/* Button */
 button {
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     font-size: 18px;
     background-color: #7e42ac;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
+/* Button Hover */
 button:hover {
-    background-color: #7e42ac;
+    background-color: #5c318b;
+    transform: scale(1.05);
 }
 
-/* Responsive styling */
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
