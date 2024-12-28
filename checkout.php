@@ -71,8 +71,7 @@ if(isset($_POST['order_btn'])){
 <?php include 'header.php'; ?>
 
 <div class="heading">
-   <h3>checkout</h3>
-   <p> <a href="home.php">home</a> / checkout </p>
+   <h3>Order summary</h3>
 </div>
 
 <section class="display-order">
@@ -85,14 +84,14 @@ if(isset($_POST['order_btn'])){
             $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
             $grand_total += $total_price;
    ?>
-   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo '$'.$fetch_cart['price'].'/-'.' x '. $fetch_cart['quantity']; ?>)</span> </p>
+   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo ''.$fetch_cart['price'].''.' x '. $fetch_cart['quantity']; ?>)</span> </p>
    <?php
       }
    }else{
       echo '<p class="empty">your cart is empty</p>';
    }
    ?>
-   <div class="grand-total"> grand total : <span>EGP<?php echo $grand_total; ?>/-</span> </div>
+   <div class="grand-total"> grand total : <span>EGP<?php echo $grand_total; ?></span> </div>
 
 </section>
 
@@ -122,23 +121,23 @@ if(isset($_POST['order_btn'])){
             </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="number" min="0" name="flat" required placeholder="e.g. flat no.">
+            <span>Street Number :</span>
+            <input type="number" min="0" name="flat" required placeholder="e.g. street name">
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="text" name="street" required placeholder="e.g. street name">
+            <span>Flat Number :</span>
+            <input type="text" name="street" required placeholder="e.g. flat no.">
          </div>
          <div class="inputBox">
-            <span>city :</span>
+            <span>City :</span>
             <input type="text" name="city" required placeholder="e.g. Nasr city">
          </div>
          <div class="inputBox">
-            <span>state :</span>
+            <span>State :</span>
             <input type="text" name="state" required placeholder="e.g. Cairo">
          </div>
          <div class="inputBox">
-            <span>country :</span>
+            <span>Country :</span>
             <input type="text" name="country" required placeholder="e.g. Egypt">
          </div>
          <div class="inputBox">
