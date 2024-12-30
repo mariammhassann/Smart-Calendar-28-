@@ -1,0 +1,107 @@
+/* General Body Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8a95c7 0%, #764ba23a 50%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Card */
+.container {
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #4b0082;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+label {
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+/* Input Fields */
+input,
+textarea {
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Focus Effects */
+input:focus,
+textarea:focus {
+    border-color: #7e42ac;
+    box-shadow: 0 0 5px rgba(126, 66, 172, 0.5);
+    outline: none;
+}
+
+/* Textarea */
+textarea {
+    resize: horizontal;
+    min-height: 100px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    background-color: #7e42ac;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Button Hover */
+button:hover {
+    background-color: #5c318b;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}

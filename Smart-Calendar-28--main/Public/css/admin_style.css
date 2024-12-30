@@ -1,0 +1,800 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
+
+:root{
+   --purple:#8e44ad;
+   --red:#c0392b;
+   --orange:#f39c12;
+   --black:#333;
+   --white:#fff;
+   --light-color:#666;
+   --light-white:#ccc;
+   --light-bg:#f5f5f5;
+   --border:.1rem solid var(--black);
+   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+   font-family: 'Rubik', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; border:none;
+   text-decoration: none;
+   transition:all .2s linear;
+}
+
+*::selection{
+   background-color: var(--purple);
+   color:var(--white);
+}
+
+*::-webkit-scrollbar{
+   height: .5rem;
+   width: 1rem;
+}
+
+*::-webkit-scrollbar-track{
+   background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb{
+   background-color: var(--purple);
+}
+
+html{
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
+
+body{
+   background-color: var(--light-bg);
+}
+
+section{
+   padding:3rem 2rem;
+}
+
+.title{
+   text-align: center;
+   margin-bottom: 2rem;
+   text-transform: uppercase;
+   color:var(--black);
+   font-size: 4rem;
+}
+
+.empty{
+   padding:1.5rem;
+   text-align: center;
+   border:var(--border);
+   background-color: var(--white);
+   color:var(--red);
+   font-size: 2rem;
+}
+
+/* Message Notification */
+.message {
+   position: sticky;
+   top: 0;
+   margin: 0 auto;
+   max-width: 1200px;
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); /* Subtle gradient for a modern touch */
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+   padding: 1.5rem 2rem; /* Adjusted padding for balance */
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-radius: 8px; /* Rounded corners for a clean look */
+   z-index: 10000;
+   gap: 1rem;
+   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animations */
+}
+
+.message:hover {
+   transform: translateY(-3px); /* Slight lift on hover */
+   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+}
+
+/* Message Text */
+.message span {
+   font-size: 1.8rem; /* Slightly smaller font for a refined look */
+   color: #444; /* Neutral text color */
+   font-weight: 500;
+}
+
+/* Close Icon */
+.message i {
+   cursor: pointer;
+   color: #ff4d4d; /* Bright red for visibility */
+   font-size: 2.2rem;
+   transition: transform 0.3s ease, color 0.3s ease; /* Smooth animations */
+}
+
+.message i:hover {
+   transform: rotate(90deg) scale(1.1); /* Rotate and enlarge on hover */
+   color: #d63333; /* Darker red on hover */
+}
+
+/* Button Styles */
+.btn,
+.option-btn,
+.delete-btn,
+.white-btn {
+   display: inline-block;
+   margin-top: 1rem;
+   padding: 1rem 3rem;
+   cursor: pointer;
+   font-size: 1.6rem; /* Refined font size */
+   border-radius: 10px; /* Larger rounded corners */
+   text-transform: capitalize;
+   font-weight: 600; /* Bold text for emphasis */
+   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+}
+
+/* Button Colors */
+.btn,
+.white-btn {
+   background-color: #6c63ff; /* Modern purple */
+   color: #fff;
+}
+
+.btn:hover,
+.option-btn:hover,
+.delete-btn:hover {
+   transform: translateY(-2px); /* Slight lift on hover */
+   background-color: #444; /* Unified hover color */
+}
+
+/* Individual Button Variants */
+.option-btn {
+   background-color: #ff9f43; /* Bright orange */
+   color: #fff;
+}
+
+.delete-btn {
+   background-color: #ff4d4d; /* Bright red for delete */
+   color: #fff;
+}
+
+.white-btn {
+   background-color: #f4f4f4; /* Subtle white */
+   color: #444; /* Neutral text color */
+   border: 1px solid #ddd; /* Subtle border for contrast */
+}
+
+.white-btn:hover {
+   background-color: #fff; /* Bright white on hover */
+   color: #6c63ff; /* Match with theme purple */
+   border-color: #6c63ff;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+   0% {
+       transform: translateY(1rem);
+       opacity: 0;
+   }
+   100% {
+       transform: translateY(0);
+       opacity: 1;
+   }
+}
+
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    0% {
+        transform: translateY(1rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.header{
+   position: sticky;
+   top:0; left:0; right:0;
+   z-index: 1000;
+   background-color: #dbd9e4;
+   box-shadow: var(--box-shadow);
+   
+}
+
+.header .flex{
+   display: flex;
+   align-items: center;
+   padding:2rem;
+   justify-content: space-between;
+   position: relative;
+   max-width: 1200px;
+   margin:0 auto;
+}
+ 
+.header .flex .logo{
+   font-size: 2.5rem;
+   color:var(--black);
+}
+
+.header .flex .logo span{
+   color:var(--purple);
+}
+
+.header .flex .navbar a{
+   margin:0 1rem;
+   font-size: 2rem;
+   color:var(--black);
+   text-align: center;
+}
+
+.header .flex .navbar a:hover{
+   color:var(--purple);
+}
+
+.header .flex .icons div{
+   margin-left: 1.5rem;
+   font-size: 2.5rem;
+   cursor: pointer;
+   color:var(--black);
+}
+
+.header .flex .icons div:hover{
+   color:var(--purple);
+}
+
+.header .flex .account-box{
+   position: absolute;
+   top:120%; right:2rem;
+   width: 50rem;
+   box-shadow: var(--box-shadow);
+   border-radius: .2rem;
+   padding:2rem;
+   text-align: center;
+   border-radius: .5rem;
+   border:#6e150b;
+   background-color: #cac2c2;
+   display: none;
+   animation:alternate .4s linear;
+}
+
+.header .flex .account-box.active{
+   display: inline-block;
+}
+
+.header .flex .account-box p{
+   font-size: 2rem;
+   color:var(--black);
+   margin-bottom: 1.5rem;
+}
+
+.header .flex .account-box p span{
+   color:#7f1105;
+}
+
+.header .flex .account-box .delete-btn{
+   margin-top: 0;
+   background-color: #81180c;
+}
+.header .flex .account-box .delete-btn:hover{
+   margin-top: 0;
+   background-color: #f2f2f2;
+   color: #333;
+}
+
+.header .flex .account-box div{
+   margin-top: 1.5rem;
+   font-size: 2rem;
+   color:var(--red);
+}
+
+.header .flex .account-box div a{
+   color:var(--red);
+}
+
+.header .flex .account-box div a:hover{
+   text-decoration: underline;
+}
+
+#menu-btn{
+   display: none;
+}
+
+/* General Dashboard Layout */
+.dashboard .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+   gap: 2rem; 
+   max-width: 1400px;
+   margin: 2rem auto; 
+   align-items: stretch; 
+}
+
+/* Individual Box Styling */
+.dashboard .box-container .box {
+   border-radius: 12px; 
+   padding: 2.5rem;
+   background: linear-gradient(135deg, #ffffff, #f8f9fc); 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border: none; 
+   text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Box Hover Effect */
+.dashboard .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+}
+
+/* Headings inside Boxes */
+.dashboard .box-container .box h3 {
+   font-size: 4.5rem; 
+   color: #333; 
+   margin-bottom: 1.2rem; 
+   font-weight: bold;
+}
+
+/* Description/Text inside Boxes */
+.dashboard .box-container .box p {
+   margin: 0;
+   padding: 1.5rem;
+   background: #f1f3f8; 
+   color: #6a0dad; 
+   font-size: 1.8rem;
+   font-weight: 500;
+   border-radius: 8px; 
+   border: none; 
+   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Text Hover Effect */
+.dashboard .box-container .box p:hover {
+   background: #6a0dad; 
+   color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .dashboard .box-container {
+       grid-template-columns: 1fr;
+       gap: 1.5rem;
+       padding: 1rem;
+   }
+}
+
+@media (max-width: 500px) {
+   .dashboard .box-container .box {
+       padding: 2rem; 
+   }
+
+   .dashboard .box-container .box h3 {
+       font-size: 3.8rem; 
+   }
+
+   .dashboard .box-container .box p {
+       font-size: 1.6rem; 
+   }
+}
+
+
+/* Add Products Form */
+.add-products form {
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+   border-radius: 12px; 
+   padding: 3rem;
+   text-align: center;
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border: none; 
+   max-width: 500px;
+   margin: 2rem auto; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-products form:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.add-products form h3 {
+   font-size: 2.8rem; 
+   text-transform: uppercase;
+   color: #333; 
+   margin-bottom: 2rem;
+   font-weight: bold;
+}
+
+.add-products form .box {
+   width: 100%;
+   background-color: #f1f3f8; 
+   border-radius: 8px;
+   margin: 1.2rem 0;
+   padding: 1.5rem;
+   color: #444; 
+   font-size: 1.8rem;
+   border: none; 
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.add-products form .box:focus {
+   background-color: #ffffff; 
+   box-shadow: 0 0 8px rgba(108, 99, 255, 0.5); 
+   outline: none;
+}
+
+/* Show Products */
+.show-products .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+   gap: 2rem; 
+   max-width: 1400px; 
+   margin: 3rem auto;
+   align-items: stretch; 
+}
+
+.show-products .box-container .box {
+   text-align: center;
+   padding: 1rem; 
+   border-radius: 12px;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+   background: linear-gradient(135deg, #ffffff, #f8f9fc); 
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.show-products .box-container .box:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.show-products .box-container .box img {
+   height: 280px;
+   object-fit: cover; 
+   border-radius: 12px 12px 0 0;
+}
+
+.show-products .box-container .box .name {
+   padding: 1rem 0;
+   font-size: 2rem;
+   color: #333;
+   font-weight: bold; 
+}
+
+.show-products .box-container .box .price {
+   padding: 1rem 0;
+   font-size: 2.2rem;
+   color: #e63946; 
+   font-weight: bold;
+}
+
+/* Edit Product Form */
+.edit-product-form {
+   min-height: 100vh;
+   background: rgba(0, 0, 0, 0.75); 
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 2rem;
+   overflow-y: auto; 
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 1200;
+   width: 100%;
+}
+
+.edit-product-form form {
+   width: 500px;
+   padding: 3rem;
+   text-align: center;
+   border-radius: 12px;
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+}
+
+.edit-product-form form img {
+   height: 250px;
+   margin-bottom: 1.5rem;
+   border-radius: 8px;
+}
+
+.edit-product-form form .box {
+   margin: 1.2rem 0;
+   padding: 1.5rem;
+   border: none;
+   border-radius: 8px;
+   background-color: #f1f3f8;
+   font-size: 1.8rem;
+   color: #333;
+   width: 100%;
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-product-form form .box:focus {
+   background-color: #ffffff;
+   box-shadow: 0 0 8px rgba(108, 99, 255, 0.5);
+   outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .add-products form,
+   .edit-product-form form {
+       width: 90%; 
+   }
+
+   .show-products .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+   }
+
+   .show-products .box-container .box img {
+       height: 200px; 
+   }
+}
+
+/* Orders Section */
+.orders .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+   justify-content: center;
+   gap: 2rem; /* More spacing for clarity */
+   max-width: 1000px; /* Wider container */
+   margin: 3rem auto;
+   align-items: stretch; /* Ensure boxes are aligned properly */
+}
+
+.orders .box-container .box {
+   background: linear-gradient(135deg, #ffffff, #f9f9f9);
+   padding: 2.5rem;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border-radius: 12px;
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orders .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.orders .box-container .box p {
+   padding-bottom: 1.5rem;
+   font-size: 1.8rem; 
+   color: #555; 
+   line-height: 1.6;
+}
+
+.orders .box-container .box p span {
+   color: #2f0d5c; 
+   font-weight: bold;
+}
+
+.orders .box-container .box form {
+   text-align: center;
+}
+
+.orders .box-container .box form select {
+   border-radius: 8px; /* Softer corners */
+   margin: 1rem 0;
+   width: 100%; 
+   background-color: #f1f3f8; 
+   border: none; 
+   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); 
+   padding: 1.2rem 1.4rem;
+   font-size: 1.6rem;
+   color: #333; /* Neutral text color */
+   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.orders .box-container .box form select:focus {
+   background-color: #ffffff; 
+   box-shadow: 0 0 8px rgba(108, 99, 255, 0.5); 
+   outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .orders .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+   }
+}
+
+/* Users Section */
+.users .box-container {
+   display: grid; 
+   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+   justify-content: center;
+   gap: 2rem; 
+   max-width: 1400px; 
+   margin: 3rem auto; 
+   align-items: stretch; 
+}
+
+/* User Box */
+.users .box-container .box {
+   background: linear-gradient(135deg, #ffffff, #f9f9f9); 
+   padding: 2.5rem;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+   border-radius: 12px; 
+   text-align: center;
+   transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.users .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); 
+}
+
+/* User Information */
+.users .box-container .box p {
+   padding-bottom: 1.5rem;
+   font-size: 1.8rem; 
+   color: #555; 
+   line-height: 1.6;
+}
+
+.users .box-container .box p span {
+   color: #31045c; 
+   font-weight: bold;
+}
+
+/* Delete Button */
+.users .box-container .box .delete-btn {
+   margin-top: 1.5rem; 
+   background-color: var(--red); 
+   color: #fff;
+   border: none;
+   border-radius: 8px; /* Rounded button */
+   padding: 1rem 2rem;
+   font-size: 1.6rem;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+}
+
+.users .box-container .box .delete-btn:hover {
+   background-color: #d63333; /* Darker red on hover */
+   transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+   .users .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust grid for smaller screens */
+   }
+}
+
+
+/* Messages Section */
+.messages .box-container {
+   display: grid; 
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+   justify-content: center;
+   gap: 2rem; /* Increased spacing for cleaner separation */
+   max-width: 1200px;
+   margin: 3rem auto; 
+   align-items: stretch;
+}
+
+/* Message Box */
+.messages .box-container .box {
+   background: linear-gradient(135deg, #ffffff, #f8f9fa);
+   padding: 2.5rem;
+   border: none; 
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+   border-radius: 12px; 
+   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover animations */
+   position: relative; 
+}
+
+.messages .box-container .box:hover {
+   transform: translateY(-5px); 
+   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); 
+}
+
+/* Message Content */
+.messages .box-container .box p {
+   padding-bottom: 1.5rem;
+   font-size: 1.8rem; 
+   color: #666; 
+   line-height: 1.6;
+}
+
+.messages .box-container .box p span {
+   color: #35095b; 
+   font-weight: bold;
+}
+
+/* Delete Button */
+.messages .box-container .box .delete-btn {
+   margin-top: 1.5rem; 
+   background-color: var(--red); 
+   color: #fff;
+   border: none;
+   border-radius: 8px; 
+   padding: 1rem 2rem;
+   font-size: 1.6rem;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.3s ease; 
+   position: absolute; 
+   bottom: 2rem;
+   right: 2rem;
+}
+
+.messages .box-container .box .delete-btn:hover {
+   background-color: #d63333; 
+   transform: scale(1.05); 
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+   .messages .box-container {
+       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+   }
+   .messages .box-container .box {
+       padding: 2rem; 
+   }
+   .messages .box-container .box .delete-btn {
+       bottom: 1.5rem; 
+       right: 1.5rem;
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries  */
+
+@media (max-width:991px){
+
+   html{
+      font-size: 55%;
+   }
+
+}
+
+@media (max-width:768px){
+
+   #menu-btn{
+      display: inline-block;
+   }
+
+   .header .flex .navbar{
+      position: absolute;
+      top:99%; left:0; right:0;
+      background-color: var(--white);
+      border-top: var(--border);
+      border-bottom: var(--border);
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+   }
+
+   .header .flex .navbar.active{
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+   }
+
+   .header .flex .navbar a{
+      margin:2rem;
+      display: block;
+   }
+
+}
+
+@media (max-width:450px){
+
+   html{
+      font-size: 50%;
+   }
+
+   .title{
+      font-size: 3rem;
+   }
+
+}
